@@ -1,6 +1,9 @@
 {
   "private": true,
   "name": "botbuilder-packages",
+  "workspaces":[
+      "packages/*"
+  ],
   "scripts": {
     "postinstall": "lerna bootstrap --hoist",
     "build": "lerna run build",

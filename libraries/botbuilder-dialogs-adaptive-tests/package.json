@@ -8,16 +8,16 @@
     "set-version": "npm version --allow-same-version ${Version}"
   },
   "dependencies": {
+    "adaptive-expressions": "4.1.6",
     "botbuilder-core": "4.1.6",
     "botbuilder-dialogs": "4.1.6",
     "botbuilder-dialogs-adaptive": "4.1.6",
-    "botbuilder-dialogs-declarative": "4.1.6",
-    "adaptive-expressions": "4.1.6"
+    "botbuilder-dialogs-declarative": "4.1.6"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.47",
-    "nock": "^11.9.1",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "nock": "^11.9.1"
   },
   "author": "Microsoft",
   "license": "MIT"
