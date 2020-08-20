@@ -1,6 +1,10 @@
 # jobs:
 #   - job: Run_Tests
     steps:
+      - powershell: ls $(ReactProjectDir)/node_modules/bot*
+        displayName: 'Show react-app node modules that start with bot'
+        workingDirectory: $(ReactProjectDir)
+
       - task: DownloadPipelineArtifact@2
         inputs:
           artifact: ReactApp
