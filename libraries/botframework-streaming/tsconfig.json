@@ -12,6 +12,7 @@
   },
   "exclude": [
     "**/index-browser.ts",
+    "**/browser*.ts",
     "browser",
     "lib",
     "node_modules"
