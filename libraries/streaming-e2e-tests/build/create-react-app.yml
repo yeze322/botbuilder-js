@@ -16,33 +16,33 @@ steps:
     displayName: "Copy custom files into react-app"
     workingDirectory: $(RootReactPiecesDir)/react-app
   
-  # - task: PublishPipelineArtifact@1
-  #   displayName: 'Publish Artifact: ReactApp'
-  #   inputs:
-  #     targetPath: $(RootReactPiecesDir)/react-app
-  #     artifactName: 'ReactApp'
-
-  - task: Cache@2
-    displayName: Cache npm
+  - task: PublishPipelineArtifact@1
+    displayName: 'Publish Artifact: ReactApp'
     inputs:
-      key: 'WebChatCache2 | npm | "$(Agent.OS)"'
-      path: $(ReactProjectDir)/node_modules
-      cacheHitVar: 'CacheRestored'
-  
-  - powershell: npm install botframework-webchat@4.9.2
-    displayName: 'npm install botframework-webchat'
-    condition: ne(variables.CacheRestored, 'true')
-    workingDirectory: $(ReactProjectDir)
-  
-  # TEMP - Vanilla DLJS
-  - powershell: yarn add botframework-directlinejs
-    displayName: 'yarn add botframework-directlinejs'
-    workingDirectory: $(ReactProjectDir)
-  
-  - powershell: start powershell {npm start}
-    displayName: 'Serve react-app (npm start), opening new console'
-    workingDirectory: $(ReactProjectDir)
+      targetPath: $(RootReactPiecesDir)/react-app
+      artifactName: 'ReactApp'
 
-  - powershell: npm test
-    displayName: 'Run Tests: npm test'
-    workingDirectory: $(TestsDir)
+  # - task: Cache@2
+  #   displayName: Cache npm
+  #   inputs:
+  #     key: 'WebChatCache2 | npm | "$(Agent.OS)"'
+  #     path: $(ReactProjectDir)/node_modules
+  #     cacheHitVar: 'CacheRestored'
+  
+  # - powershell: npm install botframework-webchat@4.9.2
+  #   displayName: 'npm install botframework-webchat'
+  #   condition: ne(variables.CacheRestored, 'true')
+  #   workingDirectory: $(ReactProjectDir)
+  
+  # # TEMP - Vanilla DLJS
+  # - powershell: yarn add botframework-directlinejs
+  #   displayName: 'yarn add botframework-directlinejs'
+  #   workingDirectory: $(ReactProjectDir)
+  
+  # - powershell: start powershell {npm start}
+  #   displayName: 'Serve react-app (npm start), opening new console'
+  #   workingDirectory: $(ReactProjectDir)
+
+  # - powershell: npm test
+  #   displayName: 'Run Tests: npm test'
+  #   workingDirectory: $(TestsDir)

@@ -14,21 +14,15 @@ jobs:
   #   steps:
   #     - template: customize-dljs.yml
 
-  # - job: Deploy_React_App_With_Custom_DLJS
-  #   dependsOn:
-  #     - Create_React_App_With_WebChat
-  #     # - Customize_DLJS
-  #   condition: succeeded()
-  #   variables:
-  #     ReactProjectDir: '$(RootReactPiecesDir)/react-app'
-  #     REACT_APP_BOT_HOSTNAME: $(BotName)
-  #   steps:
-  #     # - template: use-custom-dljs-in-webchat.yml
-
-  #     # TODO - remove. Temporarily just installing regular DLJS, no customizations
-  #     - powershell: yarn add botframework-directlinejs
-  #       displayName: 'yarn add botframework-directlinejs'
-  #       workingDirectory: $(ReactProjectDir)
-
-  #     - template: deploy-react-app.yml
+  - job: Deploy_React_App_With_Custom_DLJS
+    dependsOn:
+      - Create_React_App_With_WebChat
+      # - Customize_DLJS
+    condition: succeeded()
+    variables:
+      ReactProjectDir: '$(RootReactPiecesDir)/react-app'
+      REACT_APP_BOT_HOSTNAME: $(BotName)
+    steps:
+      - template: use-custom-dljs-in-webchat.yml
+      - template: deploy-react-app.yml
       
