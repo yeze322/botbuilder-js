@@ -15,7 +15,7 @@ jobs:
   - job: Deploy_React_App_With_Custom_DLJS
     dependsOn:
       - Create_React_App_With_WebChat
-      - Customize_DLJS
+      # - Customize_DLJS
     condition: succeeded()
     variables:
       ReactProjectDir: '$(RootReactPiecesDir)/react-app'
