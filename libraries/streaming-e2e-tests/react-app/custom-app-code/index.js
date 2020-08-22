@@ -11,6 +11,8 @@ import { DirectLineStreaming } from 'botframework-directlinejs';
     method: 'POST'
   });
 
+  console.log('hey hey hey~');
+
   const { token } = await res.json();
 
   const directLine = new DirectLineStreaming({

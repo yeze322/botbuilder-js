@@ -1,7 +1,7 @@
 # Provision and deploy a new React App that uses latest streaming bits in DLJS and ReactWebChat.
 
-# jobs:
-#   - job: Create_React_App_With_WebChat
+jobs:
+  - job: Create_React_App_With_WebChat
     steps: 
       - template: create-react-app.yml
 
@@ -12,14 +12,20 @@
   #   steps:
   #     - template: customize-dljs.yml
 
-  # - job: Deploy_React_App_With_Custom_DLJS
-  #   dependsOn:
-  #     - Create_React_App_With_WebChat
-  #     - Customize_DLJS
-  #   condition: succeeded()
-  #   variables:
-  #     ReactProjectDir: '$(RootReactPiecesDir)/react-app'
-  #   steps:
-  #     - template: use-custom-dljs-in-webchat.yml
-  #     - template: deploy-react-app.yml
+  - job: Deploy_React_App_With_Custom_DLJS
+    dependsOn:
+      - Create_React_App_With_WebChat
+      - Customize_DLJS
+    condition: succeeded()
+    variables:
+      ReactProjectDir: '$(RootReactPiecesDir)/react-app'
+      REACT_APP_BOT_HOSTNAME: $(BotName)
+    steps:
+      # - template: use-custom-dljs-in-webchat.yml
+
+      - powershell: yarn add botframework-directlinejs
+        displayName: 'yarn add botframework-directlinejs'
+        workingDirectory: $(ReactProjectDir)
+
+      - template: deploy-react-app.yml
       

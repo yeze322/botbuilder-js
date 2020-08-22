@@ -3,11 +3,12 @@ const { Builder, By, Condition, Key, until, css } = require('selenium-webdriver'
 const { Options } = require('selenium-webdriver/chrome');
 
 const userMessage = 'Why hello there';
-const reactAppEndpoint = 'http://localhost:3000/';
+const reactAppEndpoint = 'https://ash-react-app.azurewebsites.net/';
+// const reactAppEndpoint = 'http://localhost:3000/';
 
 describe('Chrome', function () {
   it('should receive an echo after sending a message', async function () {
-    this.timeout(60000);
+    this.timeout(130000);
 
     const driver = createDriver('chrome');
     await echoMessageInBrowser(driver);
@@ -43,7 +44,7 @@ async function echoMessageInBrowser(driver) {
     await driver.sleep(7000);
 
     console.log('Grabbing SendBox...');
-    let wcSendBox = await driver.wait(until.elementLocated(By.className('webchat__send-box-text-box__input')), 17000);
+    let wcSendBox = await driver.wait(until.elementLocated(By.className('webchat__send-box-text-box__input')), 20000);
 
     console.log('Sending user message...');
     await wcSendBox.sendKeys(userMessage, Key.RETURN);

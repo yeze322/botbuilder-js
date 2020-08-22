@@ -30,11 +30,11 @@ stages:
       #     - template: configure-to-bbjs-daily.yml
       #     - template: deploy-bot.yml
           
-      - job: Prep_React_App
-        variables:
-          REACT_APP_BOT_HOSTNAME: $(BotName)
-        steps:
-          - template: create-and-deploy-streaming-react-app.yml
+      # - job: Prep_React_App
+      #   variables:
+      #     REACT_APP_BOT_HOSTNAME: $(BotName)
+      #   steps:
+        - template: create-and-deploy-streaming-react-app.yml
 
   - stage: Run_Tests
     dependsOn: Create_And_Deploy_Projects
