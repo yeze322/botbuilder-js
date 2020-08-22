@@ -1,5 +1,7 @@
 jobs:
   - job: Run_Tests
+    variables:
+      PORT: 3000
     steps:
       - powershell: npm install
         displayName: 'npm install in tests directory'
@@ -22,9 +24,9 @@ jobs:
         condition: ne(variables.CacheRestored, 'true')
         workingDirectory: $(ReactProjectDir)
       
-      # - powershell: start powershell {npm start}
-      #   displayName: 'Serve react-app (npm start), opening new console'
-      #   workingDirectory: $(ReactProjectDir)
+      - powershell: start powershell {npm start}
+        displayName: 'Serve react-app (npm start), opening new console'
+        workingDirectory: $(ReactProjectDir)
 
       - powershell: npm test
         displayName: 'Run Tests: npm test'
