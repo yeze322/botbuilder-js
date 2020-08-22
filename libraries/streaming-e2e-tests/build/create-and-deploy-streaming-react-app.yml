@@ -1,7 +1,7 @@
 # Provision and deploy a new React App that uses latest streaming bits in DLJS and ReactWebChat.
 
-jobs:
-  - job: Create_React_App_With_WebChat
+# jobs:
+#   - job: Create_React_App_With_WebChat
     steps: 
       - template: create-react-app.yml
 
