@@ -7,10 +7,10 @@ jobs:
         displayName: 'npm install in tests directory'
         workingDirectory: $(TestsDir)
       
-      - task: DownloadPipelineArtifact@2
-        inputs:
-          artifact: ReactApp
-          path: $(ReactProjectDir)
+      # - task: DownloadPipelineArtifact@2
+      #   inputs:
+      #     artifact: ReactApp
+      #     path: $(ReactProjectDir)
       
       - task: Cache@2
         displayName: Cache npm
@@ -24,9 +24,9 @@ jobs:
         condition: ne(variables.CacheRestored, 'true')
         workingDirectory: $(ReactProjectDir)
       
-      - powershell: start powershell {npm start}
-        displayName: 'Serve react-app (npm start), opening new console'
-        workingDirectory: $(ReactProjectDir)
+      # - powershell: start powershell {npm start}
+      #   displayName: 'Serve react-app (npm start), opening new console'
+      #   workingDirectory: $(ReactProjectDir)
 
       - powershell: npm test
         displayName: 'Run Tests: npm test'
