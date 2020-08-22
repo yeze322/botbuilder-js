@@ -1,11 +1,30 @@
 jobs:
   - job: Run_Tests
-    variables:
-      ReactAppEndpoint: 'https://$(ReactAppService).azurewebsites.net/'
     steps:
       - powershell: npm install
         displayName: 'npm install in tests directory'
         workingDirectory: $(TestsDir)
+      
+      - task: DownloadPipelineArtifact@2
+        inputs:
+          artifact: ReactApp
+          path: $(ReactProjectDir)
+      
+      - task: Cache@2
+        displayName: Cache npm
+        inputs:
+          key: 'WebChatCache2 | npm | "$(Agent.OS)"'
+          path: $(ReactProjectDir)/node_modules
+          cacheHitVar: 'CacheRestored'
+      
+      - powershell: npm install botframework-webchat@4.9.2
+        displayName: 'npm install botframework-webchat'
+        condition: ne(variables.CacheRestored, 'true')
+        workingDirectory: $(ReactProjectDir)
+      
+      - powershell: start powershell {npm start}
+        displayName: 'Serve react-app (npm start), opening new console'
+        workingDirectory: $(ReactProjectDir)
 
       - powershell: npm test
         displayName: 'Run Tests: npm test'
