@@ -1,0 +1,20 @@
+{
+  "extension": [
+    ".js"
+  ],
+  "include": [
+    "libraries/*/lib/**/*.js"
+  ],
+  "exclude": [
+    "libraries/botframework-connector/**/browser*.js",
+    "**/node_modules/**",
+    "**/tests/**",
+    "**/coverage/**",
+    "**/*.d.ts"
+  ],
+  "reporter": [
+    "cobertura"
+  ],
+  "all": true,
+  "cache": true
+}
