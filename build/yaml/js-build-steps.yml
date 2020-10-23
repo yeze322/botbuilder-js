@@ -31,7 +31,7 @@ steps:
     workingDir: tools
     verbose: false
 
-- script: |
+- bash: |
    set -o xtrace
    sed -i 's/${Version}/$(PackageVersion)/g' package.json 
    sed -i 's/${Version}/$(PackageVersion)/g' libraries/adaptive-expressions/package.json
