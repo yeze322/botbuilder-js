@@ -6,7 +6,7 @@
 name: $(Build.BuildId)
 
 pool:
-  vmImage: 'ubuntu-18.04'
+  vmImage: 'windows-2019'
 
 variables:
   PackageVersion: 4.4.0-preview.$(Build.BuildNumber)
