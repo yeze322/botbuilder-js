@@ -50,7 +50,7 @@ steps:
     scriptLocation: inlineScript
     inlineScript: |
      echo "# Create resource group"
-     call az group create -l westus -n "$(TestResourceGroup)" --tags cause=automation date=$(DateTimeTag) sourceBranch=$(Build.SourceBranch)
+     call az group create -l westus -n "$(TestResourceGroup)" --tags cause=automation date="$(DateTimeTag)" product="botbuilder-js" sourceBranch=$(Build.SourceBranch)
      
      echo "# Create app service plan"
      call az appservice plan create -g "$(TestResourceGroup)" -n "$(TestAppServicePlan)" --number-of-workers 4 --sku S1
@@ -69,3 +69,12 @@ steps:
 
 - script: yarn browser-functional-test firefox
   displayName: run firefox tests
+
+- task: AzureCLI@1	
+  displayName: 'Delete Resource Group'	
+  inputs:	
+    azureSubscription: '$(AzureSubscription)'	
+    scriptLocation: inlineScript	
+    inlineScript: 'call az group delete -n $(TestResourceGroup) --yes'	
+
+  condition: succeededOrFailed()
