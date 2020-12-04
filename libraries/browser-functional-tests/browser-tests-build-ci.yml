@@ -50,7 +50,7 @@ steps:
     scriptLocation: inlineScript
     inlineScript: |
      echo "# Create resource group"
-     call az group create -l westus -n "$(TestResourceGroup)" --tags cause=automation date="$(DateTimeTag)" product="botbuilder-js" sourceBranch=$(Build.SourceBranch)
+     call az group create -l westus -n "$(TestResourceGroup)" --tags buildName="$(Build.DefinitionName)" cause=automation date="$(DateTimeTag)" product="$(Build.Repository.Name)" sourceBranch="$(Build.SourceBranch)"
      
      echo "# Create app service plan"
      call az appservice plan create -g "$(TestResourceGroup)" -n "$(TestAppServicePlan)" --number-of-workers 4 --sku S1
