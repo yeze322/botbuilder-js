@@ -23,7 +23,7 @@ steps:
 - powershell: |
    # Create DateTimeTag for Resource Group
    $DateTimeTag=Get-Date -Format "yyyy-MM-dd HH:mm:ssK"
-   "##vso[task.setvariable variable=DatimeTimeTag]$DateTimeTag";
+   "##vso[task.setvariable variable=DateTimeTag]$DateTimeTag";
   displayName: 'Create DateTimeTag for Resource Group'
 
 - task: NodeTool@0
